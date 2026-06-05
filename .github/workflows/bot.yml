@@ -14,8 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -40,4 +43,7 @@ jobs:
           git add offset.txt
 
           git commit -m "bot update" || exit 0
+
+          git pull --rebase origin main
+
           git push
